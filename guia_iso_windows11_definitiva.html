@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía Definitiva — ISO Windows 11 Desatendida</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg:       #0a0a0a;
+  --bg2:      #111111;
+  --bg3:      #181818;
+  --bg4:      #202020;
+  --border:   #2a2a2a;
+  --border2:  #333;
+  --text:     #e8e6e3;
+  --text2:    #999;
+  --text3:    #555;
+  --blue:     #4f8ef7;
+  --blue-dim: #1a2d4a;
+  --green:    #4ade80;
+  --green-dim:#0d2a1a;
+  --amber:    #f59e0b;
+  --amber-dim:#2a1a00;
+  --red:      #f87171;
+  --red-dim:  #2a0d0d;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'IBM Plex Sans', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  width: 260px;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  z-index: 100;
+  padding-bottom: 40px;
+}
+.sidebar-logo {
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.sidebar-logo .title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-family: var(--mono);
+}
+.sidebar-logo .sub {
+  font-size: 11px;
+  color: var(--text3);
+  margin-top: 3px;
+}
+.sidebar-section {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 16px 20px 6px;
+}
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 20px;
+  text-decoration: none;
+  color: var(--text2);
+  font-size: 12.5px;
+  border-left: 2px solid transparent;
+  transition: all 0.15s;
+}
+.sidebar a:hover { color: var(--text); background: var(--bg3); }
+.sidebar a.active { color: var(--blue); border-left-color: var(--blue); background: #0d1f3520; }
+.sidebar .num {
+  width: 18px; height: 18px;
+  background: var(--bg4);
+  border: 1px solid var(--border2);
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-family: var(--mono);
+  color: var(--text3);
+}
+.sidebar a.active .num { background: var(--blue-dim); border-color: var(--blue); color: var(--blue); }
+
+/* ── Main ── */
+.main {
+  margin-left: 260px;
+  min-height: 100vh;
+}
+
+/* ── Hero ── */
+.hero {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0d1a2e 50%, #0a0a0a 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 60px 64px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, #4f8ef715 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--green-dim);
+  border: 1px solid #1a4a2e;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: var(--mono);
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.hero h1 span { color: var(--blue); }
+.hero p {
+  font-size: 15px;
+  color: var(--text2);
+  max-width: 600px;
+  line-height: 1.6;
+}
+.hero-meta {
+  display: flex;
+  gap: 24px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text3);
+  font-family: var(--mono);
+}
+.hero-meta-item span { color: var(--text2); }
+
+/* ── Content ── */
+.content {
+  padding: 0 64px 80px;
+}
+
+/* ── Phase ── */
+.phase {
+  padding-top: 56px;
+}
+.phase-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.phase-icon {
+  width: 44px; height: 44px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.icon-blue  { background: var(--blue-dim); border: 1px solid #1f4a80; }
+.icon-green { background: var(--green-dim); border: 1px solid #1a4a2e; }
+.icon-amber { background: var(--amber-dim); border: 1px solid #3d2600; }
+.icon-red   { background: var(--red-dim); border: 1px solid #3d1010; }
+
+.phase-num {
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--mono);
+  color: var(--text3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.phase-title { font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+.phase-desc  { font-size: 13px; color: var(--text2); margin-top: 4px; }
+
+/* ── Steps ── */
+.step {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+.step-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.1s;
+}
+.step-head:hover { background: var(--bg3); }
+.step-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+.tag-b { background: var(--blue-dim); color: var(--blue); border: 1px solid #1f4a8050; }
+.tag-g { background: var(--green-dim); color: var(--green); border: 1px solid #1a4a2e50; }
+.tag-a { background: var(--amber-dim); color: var(--amber); border: 1px solid #3d260050; }
+.tag-r { background: var(--red-dim); color: var(--red); border: 1px solid #3d101050; }
+
+.step-title { font-size: 13.5px; font-weight: 600; color: var(--text); flex: 1; }
+.chevron { color: var(--text3); transition: transform 0.2s; font-size: 12px; }
+.step.open .chevron { transform: rotate(180deg); }
+.step-body {
+  display: none;
+  padding: 4px 18px 18px;
+  border-top: 1px solid var(--border);
+}
+.step.open .step-body { display: block; }
+
+/* ── Why box ── */
+.why {
+  background: #0d1f3530;
+  border-left: 3px solid var(--blue);
+  padding: 10px 14px;
+  border-radius: 0 5px 5px 0;
+  margin: 14px 0;
+  font-size: 12.5px;
+  color: var(--text2);
+}
+.why strong { color: var(--blue); }
+
+/* ── Code ── */
+.code-wrap {
+  margin: 14px 0;
+  background: #060606;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.code-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+}
+.code-lang {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.copy-btn {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text3);
+  background: none;
+  border: 1px solid var(--border2);
+  border-radius: 3px;
+  padding: 2px 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.copy-btn:hover { border-color: var(--blue); color: var(--blue); }
+.copy-btn.ok { border-color: var(--green); color: var(--green); }
+
+pre {
+  margin: 0;
+  padding: 14px 16px;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.75;
+  overflow-x: auto;
+  color: var(--text);
+  white-space: pre;
+}
+code {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--bg4);
+  border: 1px solid var(--border2);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--amber);
+}
+
+/* ── Callouts ── */
+.callout {
+  display: flex;
+  gap: 12px;
+  padding: 12px 15px;
+  border-radius: 7px;
+  margin: 14px 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.callout .ico { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.c-info   { background: #0d1f3530; border: 1px solid #1f4a8050; color: #7ab8ff; }
+.c-warn   { background: #2a1a0030; border: 1px solid #3d260050; color: #d4a017; }
+.c-ok     { background: #0d2a1a30; border: 1px solid #1a4a2e50; color: #56d364; }
+.c-danger { background: #2a0d0d30; border: 1px solid #3d101050; color: #f07080; }
+.callout-title { font-weight: 600; margin-bottom: 3px; }
+
+/* ── Tree ── */
+.tree {
+  background: #060606;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 14px 18px;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.9;
+  margin: 14px 0;
+  overflow-x: auto;
+}
+.td { color: var(--blue); }
+.tf { color: var(--text2); }
+.tk { color: var(--amber); font-weight: 600; }
+.tg { color: var(--green); }
+.ta { color: var(--text3); font-style: italic; }
+
+/* ── Table ── */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 12.5px;
+}
+.tbl th {
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text3);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--mono);
+}
+.tbl td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text2);
+}
+.tbl tr:last-child td { border-bottom: none; }
+.ok-cell { color: var(--green); font-family: var(--mono); font-size: 12px; }
+.fail-cell { color: var(--red); font-family: var(--mono); font-size: 12px; }
+.fix-cell { color: var(--amber); font-size: 12px; }
+
+/* ── Checklist ── */
+.checks { list-style: none; margin: 14px 0; }
+.checks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.checks li:last-child { border-bottom: none; }
+.cb {
+  width: 17px; height: 17px;
+  border: 1.5px solid var(--border2);
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+  font-size: 11px;
+}
+.cb.on { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.cl { flex: 1; color: var(--text2); line-height: 1.4; }
+.cl.done { text-decoration: line-through; color: var(--text3); }
+
+/* ── Summary box ── */
+.summary {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  margin-top: 40px;
+}
+.summary h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  font-family: var(--mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.order-item:last-child { border-bottom: none; }
+.order-num {
+  width: 24px; height: 24px;
+  background: var(--blue-dim);
+  border: 1px solid #1f4a80;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue);
+  flex-shrink: 0;
+  font-family: var(--mono);
+}
+.order-text { color: var(--text2); flex: 1; }
+.order-time {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text3);
+  background: var(--bg4);
+  padding: 2px 7px;
+  border-radius: 3px;
+  border: 1px solid var(--border2);
+}
+
+p { margin-bottom: 10px; color: var(--text2); font-size: 13.5px; }
+h3 { font-size: 13px; font-weight: 600; color: var(--text); margin: 18px 0 8px; }
+strong { color: var(--text); font-weight: 600; }
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="title">Win11 ISO Guide</div>
+    <div class="sub">Versión definitiva — v6</div>
+  </div>
+  <div class="sidebar-section">Fases</div>
+  <a href="#fase1"><span class="num">1</span> Herramientas y preparación</a>
+  <a href="#fase2"><span class="num">2</span> Extraer la ISO base</a>
+  <a href="#fase3"><span class="num">3</span> Preparar instaladores</a>
+  <a href="#fase4"><span class="num">4</span> Inyectar en el WIM</a>
+  <a href="#fase5"><span class="num">5</span> autounattend.xml</a>
+  <a href="#fase6"><span class="num">6</span> Generar la ISO final</a>
+  <a href="#fase7"><span class="num">7</span> Grabar USB e instalar</a>
+  <a href="#fase8"><span class="num">8</span> Verificación</a>
+  <div class="sidebar-section">Referencia</div>
+  <a href="#parametros">Parámetros silenciosos</a>
+  <a href="#errores">Errores comunes</a>
+  <a href="#resumen">Resumen de pasos</a>
+</nav>
+
+<div class="main">
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-badge">✓ Guía definitiva — probada y funcional</div>
+  <h1>ISO <span>Windows 11</span> Personalizada<br>y Desatendida</h1>
+  <p>Guía completa basada en el proceso real de prueba y error. Incluye todos los ajustes que funcionaron: inyección de instaladores en el WIM, RunOnce en el registro, parámetros silenciosos verificados y reemplazo de instaladores online por versiones offline.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">🪟 <span>Windows 11 Pro — Índice 4</span></div>
+    <div class="hero-meta-item">👤 <span>Usuario local GTA (Admin)</span></div>
+    <div class="hero-meta-item">📦 <span>7 aplicaciones integradas</span></div>
+    <div class="hero-meta-item">🌐 <span>Sin internet en destino</span></div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ══════════════════════════════════════════════
+     FASE 1 — HERRAMIENTAS
+══════════════════════════════════════════════ -->
+<div class="phase" id="fase1">
+  <div class="phase-header">
+    <div class="phase-icon icon-blue">🛠</div>
+    <div>
+      <div class="phase-num">Fase 01</div>
+      <div class="phase-title">Herramientas y preparación</div>
+      <div class="phase-desc">Todo lo que debes instalar y descargar antes de empezar</div>
+    </div>
+  </div>
+
+  <div class="step open" id="s1">
+    <div class="step-head" onclick="tog('s1')">
+      <span class="step-tag tag-b">1.1</span>
+      <span class="step-title">Instala las herramientas necesarias en tu equipo de trabajo</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="why"><strong>Estas tres herramientas son obligatorias.</strong> Sin ellas no puedes extraer la ISO, modificar el WIM ni crear la ISO final.</div>
+
+      <h3>7-Zip</h3>
+      <p>Para extraer el contenido de la ISO. Descarga desde <strong>7-zip.org</strong> → instala el .exe de 64 bits.</p>
+
+      <h3>Windows ADK — solo "Deployment Tools"</h3>
+      <p>Incluye DISM (para montar y modificar el WIM) y oscdimg (para crear la ISO final). Busca en Google <em>"Windows ADK download Microsoft"</em> → descarga <code>adksetup.exe</code> → al instalar marca únicamente <strong>Deployment Tools</strong>. Pesa ~200 MB.</p>
+
+      <h3>Notepad++</h3>
+      <p>Imprescindible para editar el <code>autounattend.xml</code> sin corromper la codificación UTF-8. Descarga desde <strong>notepad-plus-plus.org</strong>.</p>
+
+      <h3>Rufus</h3>
+      <p>Para grabar la ISO en USB. Descarga desde <strong>rufus.ie</strong>. Es un solo .exe, sin instalación.</p>
+
+      <ul class="checks">
+        <li><div class="cb" onclick="ck(this)"></div><span class="cl">7-Zip instalado</span></li>
+        <li><div class="cb" onclick="ck(this)"></div><span class="cl">Windows ADK instalado (solo "Deployment Tools")</span></li>
+        <li><div class="cb" onclick="ck(this)"></div><span class="cl">Notepad++ instalado</span></li>
+        <li><div class="cb" onclick="ck(this)"></div><span class="cl">Rufus descargado</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step" id="s2">
+    <div class="step-head" onclick="tog('s2')">
+      <span class="step-tag tag-b">1.2</span>
+      <span class="step-title">Descarga la ISO oficial de Windows 11 y los instaladores offline</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="why"><strong>Crítico:</strong> Chrome y Java deben ser sus versiones <strong>offline</strong>. Los instaladores online no funcionan sin internet y no instalarán nada.</div>
+
+      <h3>ISO de Windows 11</h3>
+      <p>Ve a <strong>microsoft.com/es-es/software-download/windows11</strong> → "Descargar imagen de disco de Windows 11 (ISO para dispositivos x64)" → Español → descarga. Pesa ~5.8 GB.</p>
+
+      <h3>Google Chrome — instalador offline MSI (obligatorio)</h3>
+      <p>El <code>ChromeSetup.exe</code> que descarga Google normalmente es un instalador <strong>online</strong> que requiere internet. Para uso sin internet necesitas el MSI enterprise:</p>
+      <p>Ve a <strong>chromeenterprise.google/intl/es_es/browser/download/</strong> → Windows 64-bit → MSI. El archivo se llamará <code>googlechromestandaloneenterprise64.msi</code>.</p>
+
+      <h3>Java — instalador offline (obligatorio)</h3>
+      <p>El <code>JavaSetup8u301.exe</code> estándar también es online. Necesitas el instalador offline:</p>
+      <p>Ve a <strong>java.com/es/download/manual.jsp</strong> → Windows Offline (64 bits). El archivo se llamará <code>jre-8uXXX-windows-x64.exe</code>.</p>
+
+      <h3>Los demás instaladores (ya funcionan offline)</h3>
+      <table class="tbl">
+        <tr><th>Programa</th><th>Archivo</th><th>Estado</th></tr>
+        <tr><td>7-Zip</td><td><code>7z1604-x64.exe</code></td><td class="ok-cell">✓ Offline</td></tr>
+        <tr><td>MoffFree Calculator</td><td><code>MoffFreeCalcSetup.exe</code></td><td class="ok-cell">✓ Offline</td></tr>
+        <tr><td>K-Lite Codec Pack</td><td><code>K-Lite_Codec_Pack_1196_Mega.exe</code></td><td class="ok-cell">✓ Offline</td></tr>
+        <tr><td>Foxit Reader</td><td><code>FoxitReader1011_L10N_Setup_Prom.exe</code></td><td class="ok-cell">✓ Offline</td></tr>
+        <tr><td>Firefox</td><td><code>Firefox Setup 85.0.2.exe</code></td><td class="ok-cell">✓ Offline</td></tr>
+        <tr><td>Java</td><td><code>jre-8uXXX-windows-x64.exe</code></td><td class="ok-cell">✓ Offline (versión manual)</td></tr>
+        <tr><td>Chrome</td><td><code>googlechromestandaloneenterprise64.msi</code></td><td class="ok-cell">✓ Offline (MSI enterprise)</td></tr>
+      </table>
+
+      <h3>Crea la carpeta de trabajo</h3>
+      <p>Abre CMD como Administrador y ejecuta:</p>
+      <div class="code-wrap">
+        <div class="code-top"><span class="code-lang">CMD — Administrador</span><button class="copy-btn" onclick="cp(this,'c01')">Copiar</button></div>
+        <pre id="c01">mkdir "C:\ProyectoISO\ISO_fuente"
+mkdir "C:\ProyectoISO\Updates"
+mkdir "C:\ProyectoISO\WIM_mount"</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     FASE 2 — EXTRAER ISO
+══════════════════════════════════════════════ -->
+<div class="phase" id="fase2">
+  <div class="phase-header">
+    <div class="phase-icon icon-amber">📦</div>
+    <div>
+      <div class="phase-num">Fase 02</div>
+      <div class="phase-title">Extraer la ISO base</div>
+      <div class="phase-desc">Descomprimir el contenido para poder modificarlo</div>
+    </div>
+  </div>
+
+  <div class="step open" id="s3">
+    <div class="step-head" onclick="tog('s3')">
+      <span class="step-tag tag-a">2.1</span>
+      <span class="step-title">Extrae la ISO de Windows 11 con 7-Zip</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="why"><strong>¿Por qué extraer?</strong> Una ISO es un archivo comprimido. Para agregar archivos y modificar el WIM hay que extraer todo a una carpeta normal primero.</div>
+      <p>Clic derecho sobre el archivo <code>.iso</code> descargado → <strong>7-Zip → Extraer en...</strong> → destino: <code>C:\ProyectoISO\ISO_fuente\</code></p>
+      <p>Tarda 3-7 minutos. Al terminar verás estas carpetas dentro de <code>ISO_fuente</code>:</p>
+      <div class="tree">
+<span class="td">C:\ProyectoISO\ISO_fuente\</span>
+├── <span class="td">boot\</span>
+├── <span class="td">efi\</span>
+├── <span class="td">sources\</span>
+│   └── <span class="tf">install.wim</span>     <span class="ta">← el sistema operativo</span>
+└── <span class="td">support\</span>
+      </div>
+      <div class="callout c-info"><div class="ico">ℹ️</div><div>El archivo más importante es <code>sources\install.wim</code>. Aquí se inyectarán los instaladores en la Fase 4.</div></div>
+    </div>
+  </div>
+
+  <div class="step" id="s4">
+    <div class="step-head" onclick="tog('s4')">
+      <span class="step-tag tag-a">2.2</span>
+      <span class="step-title">Verifica los índices del WIM</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="why"><strong>Crítico:</strong> Una ISO de Windows 11 contiene varias ediciones (Home, Pro, Education, etc.). Cada una tiene un número de índice. Debes saber cuál es la edición que quieres instalar para modificar el índice correcto.</div>
+      <div class="code-wrap">
+        <div class="code-top"><span class="code-lang">CMD — Administrador</span><button class="copy-btn" onclick="cp(this,'c02')">Copiar</button></div>
+        <pre id="c02">DISM /Get-ImageInfo /ImageFile:"C:\ProyectoISO\ISO_fuente\sources\install.wim"</pre>
+      </div>
+      <p>Verás una lista como esta. Anota el índice de la edición que quieres:</p>
+      <table class="tbl">
+        <tr><th>Índice</th><th>Edición</th><th>Usar</th></tr>
+        <tr><td class="ok-cell">1</td><td>Windows 11 Home</td><td>Si quieres Home</td></tr>
+        <tr><td class="ok-cell">4</td><td>Windows 11 Pro</td><td class="ok-cell">✓ El que usamos</td></tr>
+        <tr><td class="ok-cell">6</td><td>Windows 11 Pro for Workstations</td><td>No confundir con Pro</td></tr>
+      </table>
+      <div class="callout c-danger"><div class="ico">🚫</div><div><div class="callout-title">Error que cometimos</div>Al principio usamos el índice 6 creyendo que era Pro, pero era "Pro for Workstations". El índice correcto para <strong>Windows 11 Pro</strong> es el <strong>4</strong>. Verifica siempre el nombre antes de continuar.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     FASE 3 — PREPARAR INSTALADORES
+══════════════════════════════════════════════ -->
+<div class="phase" id="fase3">
+  <div class="phase-header">
+    <div class="phase-icon icon-green">📁</div>
+    <div>
+      <div class="phase-num">Fase 03</div>
+      <div class="phase-title">Preparar el script de instalación</div>
+      <div class="phase-desc">El archivo instalar.cmd con los parámetros silenciosos correctos</div>
+    </div>
+  </div>
+
+  <div class="step open" id="s5">
+    <div class="step-head" onclick="tog('s5')">
+      <span class="step-tag tag-g">3.1</span>
+      <span class="step-title">Crea el archivo instalar.cmd con parámetros verificados</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="why"><strong>Parámetros silenciosos verificados:</strong> Cada instalador usa un motor diferente con sus propios comandos. Estos fueron probados y confirmados uno por uno.</div>
+
+      <table class="tbl">
+        <tr><th>Programa</th><th>Motor</th><th>Parámetro silencioso</th></tr>
+        <tr><td>7-Zip</td><td>NSIS</td><td><code>/S</code> (mayúscula obligatoria)</td></tr>
+        <tr><td>MoffFree Calc</td><td>Inno Setup</td><td><code>/VERYSILENT /SUPPRESSMSGBOXES /NORESTART</code></td></tr>
+        <tr><td>K-Lite</td><td>Inno Setup</td><td><code>/VERYSILENT /SUPPRESSMSGBOXES /NORESTART</code></td></tr>
+        <tr><td>Foxit Reader</td><td>Inno Setup</td><td><code>/VERYSILENT /SUPPRESSMSGBOXES /NORESTART</code></td></tr>
+        <tr><td>Java offline</td><td>Oracle</td><td><code>/s REBOOT=0 SPONSORS=0</code></td></tr>
+        <tr><td>Chrome MSI</td><td>MSI (msiexec)</td><td><code>/qn /norestart ALLUSERS=1</code></td></tr>
+        <tr><td>Firefox</td><td>Mozilla</td><td><code>-ms</code></td></tr>
+      </table>
+
+      <p>Abre Notepad++, crea un archivo nuevo y pega exactamente este contenido:</p>
+      <div class="code-wrap">
+        <div class="code-top"><span class="code-lang">instalar.cmd</span><button class="copy-btn" onclick="cp(this,'c03')">Copiar</button></div>
+        <pre id="c03">@echo off
+:: Elimina RunOnce para que no vuelva a ejecutar
+reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce" /v "InstalarProgramas" /f >nul 2>&1
+
+:: Espera 30 segundos a que el escritorio cargue completamente
+timeout /t 30 /nobreak >nul
+
+echo [%DATE% %TIME%] ===== INICIO ===== >> C:\install_log.txt
+cd /d "C:\Windows\Setup\Scripts\Installers"
+
+:: 7-Zip — Motor NSIS, /S en MAYUSCULA
+start /wait /b "" "7z1604-x64.exe" /S
+echo [%DATE% %TIME%] 7-Zip: %ERRORLEVEL% >> C:\install_log.txt
+
+:: MoffFree Calculator — Motor Inno Setup
+start /wait /b "" "MoffFreeCalcSetup.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+echo [%DATE% %TIME%] MoffFree: %ERRORLEVEL% >> C:\install_log.txt
+
+:: K-Lite Codec Pack — Motor Inno Setup
+start /wait /b "" "K-Lite_Codec_Pack_1196_Mega.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+echo [%DATE% %TIME%] K-Lite: %ERRORLEVEL% >> C:\install_log.txt
+
+:: Foxit Reader — Motor Inno Setup
+start /wait /b "" "FoxitReader1011_L10N_Setup_Prom.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+echo [%DATE% %TIME%] Foxit: %ERRORLEVEL% >> C:\install_log.txt
+
+:: Java offline — reemplaza XXXX por tu version (ej: 8u491)
+start /wait /b "" "jre-8u491-windows-x64.exe" /s REBOOT=0 SPONSORS=0
+echo [%DATE% %TIME%] Java: %ERRORLEVEL% >> C:\install_log.txt
+
+:: Google Chrome MSI offline — msiexec para archivos .msi
+start /wait /b "" msiexec /i "googlechromestandaloneenterprise64.msi" /qn /norestart ALLUSERS=1
+echo [%DATE% %TIME%] Chrome: %ERRORLEVEL% >> C:\install_log.txt
+
+:: Firefox — ruta completa obligatoria por el espacio en el nombre
+start /wait /b "" "C:\Windows\Setup\Scripts\Installers\Firefox Setup 85.0.2.exe" -ms
+echo [%DATE% %TIME%] Firefox: %ERRORLEVEL% >> C:\install_log.txt
+
+echo [%DATE% %TIME%] ===== COMPLETADO ===== >> C:\install_log.txt
+exit /b 0</pre>
+      </div>
+
+      <p>Guarda el archivo en Notepad++:</p>
+      <p>→ <strong>Archivo → Guardar como</strong> → tipo: <strong>Todos los archivos (*.*)</strong> → nombre: <code>instalar.cmd</code> → guárdalo en: <code>C:\ProyectoISO\</code></p>
+      <div class="callout c-danger"><div class="ico">🚫</div><div><div class="callout-title">Verificar codificación en Notepad++</div>Menú <strong>Codificación → UTF-8 (sin BOM)</strong>. Si dice otra cosa, cámbiala antes de guardar. La codificación incorrecta hace que Windows ignore el archivo.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     FASE 4 — INYECTAR EN EL WIM
+══════════════════════════════════════════════ -->
+<div class="phase" id="fase4">
+  <div class="phase-header">
+    <div class="phase-icon icon-blue">💉</div>
+    <div>
+      <div class="phase-num">Fase 04</div>
+      <div class="phase-title">Inyectar instaladores en el WIM</div>
+      <div class="phase-desc">El método que garantiza que los archivos siempre lleguen al disco</div>
+    </div>
+  </div>
+
+  <div class="step open" id="s6">
+    <div class="step-head" onclick="tog('s6')">
+      <span class="step-tag tag-b">4.1</span>
+      <span class="step-title">¿Por qué inyectar en el WIM y no usar $OEM$?</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="why"><strong>Lección aprendida en este proceso:</strong> La carpeta <code>$OEM$</code> depende de cómo Rufus graba el USB. En varias pruebas, Rufus no copió el <code>$OEM$</code> correctamente al disco durante la instalación. Inyectar los archivos directamente dentro del <code>install.wim</code> garantiza que siempre lleguen a <code>C:\</code> porque van dentro del propio sistema operativo.</div>
+      <table class="tbl">
+        <tr><th>Método</th><th>Confiabilidad</th><th>Resultado en pruebas</th></tr>
+        <tr><td>$OEM$ en ISO</td><td class="fail-cell">❌ Inestable</td><td>Rufus no copiaba los archivos al disco</td></tr>
+        <tr><td>FirstLogonCommands</td><td class="fail-cell">❌ Inestable</td><td>Windows 11 22H2+ no lo dispara confiablemente</td></tr>
+        <tr><td>SetupComplete.cmd</td><td class="fail-cell">❌ Inestable</td><td>No se ejecuta automáticamente en Win11 reciente</td></tr>
+        <tr><td><strong>WIM + RunOnce</strong></td><td class="ok-cell">✓ Funciona</td><td>Instaladores siempre llegan y se ejecutan</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="step" id="s7">
+    <div class="step-head" onclick="tog('s7')">
+      <span class="step-tag tag-b">4.2</span>
+      <span class="step-title">Limpia montajes anteriores y monta el WIM</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <p>Primero limpia cualquier montaje anterior que haya quedado colgado:</p>
+      <div class="code-wrap">
+        <div class="code-top"><span class="code-lang">CMD — Administrador</span><button class="copy-btn" onclick="cp(this,'c04')">Copiar</button></div>
+        <pre id="c04">DISM /Cleanup-Mountpoints</pre>
+      </div>
+      <p>Luego monta el WIM. Usa el índice que identificaste (para Windows 11 Pro es el 4):</p>
+      <div class="code-wrap">
+        <div class="code-top"><span class="code-lang">CMD — Administrador</span><button class="copy-btn" onclick="cp(this,'c05')">Copiar</button></div>
+        <pre id="c05">DISM /Mount-Image /ImageFile:"C:\ProyectoISO\ISO_fuente\sources\install.wim" /Index:4 /MountDir:"C:\ProyectoISO\WIM_mount"</pre>
+      </div>
+      <p>Tarda entre 5 y 15 minutos. Cuando termine verás: <code>The operation completed successfully.</code></p>
+      <div class="callout c-warn"><div class="ico">⚠️</div><div>Si sale error <code>0xc1420127</code> significa que el WIM ya está montado de una sesión anterior. Ejecuta <code>DISM /Cleanup-Mountpoints</code> y vuelve a intentarlo.</div></div>
+    </div>
+  </div>
+
+  <div class="step" id="s8">
+    <div class="step-head" onclick="tog('s8')">
+      <span class="step-tag tag-b">4.3</span>
+      <span class="step-title">Copia los instaladores y el script dentro del WIM</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="code-wrap">
+        <div class="code-top"><span class="code-lang">CMD — Administrador</span><button class="copy-btn" onclick="cp(this,'c06')">Copiar</button></div>
+        <pre id="c06">:: Crea la carpeta de instaladores dentro del WIM
+mkdir "C:\ProyectoISO\WIM_mount\Windows\Setup\Scripts\Installers"
+
+:: Copia los 7 instaladores — ajusta la ruta a donde los tengas
+xcopy /E /H /Y "C:\Users\wbolivar\Desktop\Windows 11 desatendido\Instaladores\*.*" "C:\ProyectoISO\WIM_mount\Windows\Setup\Scripts\Installers\"
+
+:: Copia el instalador offline de Chrome
+copy /Y "C:\Users\wbolivar\Downloads\googlechromestandaloneenterprise64.msi" "C:\ProyectoISO\WIM_mount\Windows\Setup\Scripts\Installers\"
+
+:: Copia el instalador offline de Java
+copy /Y "C:\Users\wbolivar\Downloads\jre-8u491-windows-x64.exe" "C:\ProyectoISO\WIM_mount\Windows\Setup\Scripts\Installers\"
+
+:: Copia el script de instalacion
+copy /Y "C:\ProyectoISO\instalar.cmd" "C:\ProyectoISO\WIM_mount\Windows\Setup\Scripts\instalar.cmd"</pre>
+      </div>
+      <div class="callout c-info"><div class="ico">ℹ️</div><div>Ajusta las rutas de origen según donde tengas guardados los archivos en tu equipo.</div></div>
+    </div>
+  </div>
+
+  <div class="step" id="s9">
+    <div class="step-head" onclick="tog('s9')">
+      <span class="step-tag tag-b">4.4</span>
+      <span class="step-title">Registra RunOnce en el registro del WIM</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="why"><strong>¿Qué es RunOnce?</strong> Es una clave del registro de Windows que guarda comandos para ejecutar una sola vez al próximo inicio de sesión. Al registrarla dentro del WIM montado, queda grabada en el sistema operativo que se instalará. Al primer login del usuario GTA, Windows ejecuta automáticamente el <code>instalar.cmd</code> y luego borra la entrada.</div>
+      <div class="code-wrap">
+        <div class="code-top"><span class="code-lang">CMD — Administrador</span><button class="copy-btn" onclick="cp(this,'c07')">Copiar</button></div>
+        <pre id="c07">:: Carga el registro del WIM montado en HKLM temporal
+reg load HKLM\WIM_SOFTWARE "C:\ProyectoISO\WIM_mount\Windows\System32\config\SOFTWARE"
+
+:: Registra el comando que instalara los programas al primer login
+reg add "HKLM\WIM_SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce" /v "InstalarProgramas" /t REG_SZ /d "cmd /c C:\Windows\Setup\Scripts\instalar.cmd" /f
+
+:: Descarga el registro del WIM
+reg unload HKLM\WIM_SOFTWARE</pre>
+      </div>
+      <div class="callout c-ok"><div class="ico">✅</div><div>Los tres comandos deben responder <code>The operation completed successfully.</code>. Si el tercero falla, espera unos segundos y vuelve a ejecutar <code>reg unload HKLM\WIM_SOFTWARE</code>.</div></div>
+    </div>
+  </div>
+
+  <div class="step" id="s10">
+    <div class="step-head" onclick="tog('s10')">
+      <span class="step-tag tag-b">4.5</span>
+      <span class="step-title">Desmonta y guarda el WIM</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="code-wrap">
+        <div class="code-top"><span class="code-lang">CMD — Administrador</span><button class="copy-btn" onclick="cp(this,'c08')">Copiar</button></div>
+        <pre id="c08">DISM /Unmount-Image /MountDir:"C:\ProyectoISO\WIM_mount" /Commit</pre>
+      </div>
+      <p>Tarda entre 5 y 20 minutos. Espera a que aparezca <code>The operation completed successfully.</code> antes de continuar.</p>
+      <div class="callout c-danger"><div class="ico">🚫</div><div>No cierres el CMD ni apagues el equipo mientras desmonta. Si se interrumpe el WIM puede corromperse y tendrás que volver a extraer la ISO desde cero.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     FASE 5 — AUTOUNATTEND.XML
+══════════════════════════════════════════════ -->
+<div class="phase" id="fase5">
+  <div class="phase-header">
+    <div class="phase-icon icon-amber">⚙️</div>
+    <div>
+      <div class="phase-num">Fase 05</div>
+      <div class="phase-title">Crear el autounattend.xml</div>
+      <div class="phase-desc">El archivo que automatiza toda la instalación de Windows</div>
+    </div>
+  </div>
+
+  <div class="step open" id="s11">
+    <div class="step-head" onclick="tog('s11')">
+      <span class="step-tag tag-a">5.1</span>
+      <span class="step-title">Crea el autounattend.xml en Notepad++</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="why"><strong>¿Qué hace este archivo?</strong> Responde automáticamente todas las preguntas del instalador de Windows: idioma, particionar el disco, nombre del equipo, crear el usuario GTA y saltar toda la pantalla de bienvenida. Windows lo lee si lo encuentra en la raíz del USB al arrancar.</div>
+
+      <div class="callout c-danger"><div class="ico">🚫</div><div><div class="callout-title">Tres reglas críticas aprendidas en este proceso</div>
+        1. La primera línea DEBE ser <code>&lt;?xml version="1.0" encoding="utf-8"?&gt;</code> — sin ella Windows ignora el archivo.<br>
+        2. La codificación en Notepad++ DEBE ser <strong>UTF-8 (sin BOM)</strong>.<br>
+        3. Debe estar en la <strong>raíz del USB</strong>, no dentro de ninguna subcarpeta.
+      </div></div>
+
+      <p>Abre Notepad++ → menú <strong>Codificación → UTF-8 (sin BOM)</strong> → pega este contenido:</p>
+      <div class="code-wrap">
+        <div class="code-top"><span class="code-lang">autounattend.xml</span><button class="copy-btn" onclick="cp(this,'c09')">Copiar</button></div>
+        <pre id="c09" style="font-size:11px;">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;unattend xmlns="urn:schemas-microsoft-com:unattend"&gt;
+
+  &lt;!-- windowsPE: corre ANTES de instalar. Define idioma, disco e imagen. --&gt;
+  &lt;settings pass="windowsPE"&gt;
+    &lt;component name="Microsoft-Windows-International-Core-WinPE"
+               processorArchitecture="amd64"
+               publicKeyToken="31bf3856ad364e35"
+               language="neutral" versionScope="nonSxS"
+               xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"&gt;
+      &lt;SetupUILanguage&gt;&lt;UILanguage&gt;es-CO&lt;/UILanguage&gt;&lt;/SetupUILanguage&gt;
+      &lt;InputLocale&gt;es-CO&lt;/InputLocale&gt;
+      &lt;SystemLocale&gt;es-CO&lt;/SystemLocale&gt;
+      &lt;UILanguage&gt;es-CO&lt;/UILanguage&gt;
+      &lt;UserLocale&gt;es-CO&lt;/UserLocale&gt;
+    &lt;/component&gt;
+    &lt;component name="Microsoft-Windows-Setup"
+               processorArchitecture="amd64"
+               publicKeyToken="31bf3856ad364e35"
+               language="neutral" versionScope="nonSxS"
+               xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"&gt;
+      &lt;UserData&gt;&lt;AcceptEula&gt;true&lt;/AcceptEula&gt;&lt;/UserData&gt;
+      &lt;DiskConfiguration&gt;
+        &lt;Disk wcm:action="add"&gt;
+          &lt;DiskID&gt;0&lt;/DiskID&gt;
+          &lt;WillWipeDisk&gt;true&lt;/WillWipeDisk&gt;
+          &lt;CreatePartitions&gt;
+            &lt;CreatePartition wcm:action="add"&gt;&lt;Order&gt;1&lt;/Order&gt;&lt;Type&gt;EFI&lt;/Type&gt;&lt;Size&gt;300&lt;/Size&gt;&lt;/CreatePartition&gt;
+            &lt;CreatePartition wcm:action="add"&gt;&lt;Order&gt;2&lt;/Order&gt;&lt;Type&gt;MSR&lt;/Type&gt;&lt;Size&gt;16&lt;/Size&gt;&lt;/CreatePartition&gt;
+            &lt;CreatePartition wcm:action="add"&gt;&lt;Order&gt;3&lt;/Order&gt;&lt;Type&gt;Primary&lt;/Type&gt;&lt;Extend&gt;true&lt;/Extend&gt;&lt;/CreatePartition&gt;
+          &lt;/CreatePartitions&gt;
+          &lt;ModifyPartitions&gt;
+            &lt;ModifyPartition wcm:action="add"&gt;&lt;Order&gt;1&lt;/Order&gt;&lt;PartitionID&gt;1&lt;/PartitionID&gt;&lt;Format&gt;FAT32&lt;/Format&gt;&lt;Label&gt;System&lt;/Label&gt;&lt;/ModifyPartition&gt;
+            &lt;ModifyPartition wcm:action="add"&gt;&lt;Order&gt;2&lt;/Order&gt;&lt;PartitionID&gt;2&lt;/PartitionID&gt;&lt;/ModifyPartition&gt;
+            &lt;ModifyPartition wcm:action="add"&gt;&lt;Order&gt;3&lt;/Order&gt;&lt;PartitionID&gt;3&lt;/PartitionID&gt;&lt;Format&gt;NTFS&lt;/Format&gt;&lt;Label&gt;Windows&lt;/Label&gt;&lt;Letter&gt;C&lt;/Letter&gt;&lt;/ModifyPartition&gt;
+          &lt;/ModifyPartitions&gt;
+        &lt;/Disk&gt;
+      &lt;/DiskConfiguration&gt;
+      &lt;ImageInstall&gt;
+        &lt;OSImage&gt;
+          &lt;InstallTo&gt;&lt;DiskID&gt;0&lt;/DiskID&gt;&lt;PartitionID&gt;3&lt;/PartitionID&gt;&lt;/InstallTo&gt;
+          &lt;WillShowUI&gt;Never&lt;/WillShowUI&gt;
+        &lt;/OSImage&gt;
+      &lt;/ImageInstall&gt;
+    &lt;/component&gt;
+  &lt;/settings&gt;
+
+  &lt;!-- specialize: nombre del equipo y zona horaria --&gt;
+  &lt;settings pass="specialize"&gt;
+    &lt;component name="Microsoft-Windows-Shell-Setup"
+               processorArchitecture="amd64"
+               publicKeyToken="31bf3856ad364e35"
+               language="neutral" versionScope="nonSxS"
+               xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"&gt;
+      &lt;ComputerName&gt;PC-GTA&lt;/ComputerName&gt;
+      &lt;TimeZone&gt;SA Pacific Standard Time&lt;/TimeZone&gt;
+    &lt;/component&gt;
+  &lt;/settings&gt;
+
+  &lt;!-- oobeSystem: usuario GTA, salta bienvenida, auto-login --&gt;
+  &lt;settings pass="oobeSystem"&gt;
+    &lt;component name="Microsoft-Windows-Shell-Setup"
+               processorArchitecture="amd64"
+               publicKeyToken="31bf3856ad364e35"
+               language="neutral" versionScope="nonSxS"
+               xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"&gt;
+      &lt;OOBE&gt;
+        &lt;HideEULAPage&gt;true&lt;/HideEULAPage&gt;
+        &lt;HideLocalAccountScreen&gt;false&lt;/HideLocalAccountScreen&gt;
+        &lt;HideOnlineAccountScreens&gt;true&lt;/HideOnlineAccountScreens&gt;
+        &lt;HideWirelessSetupInOOBE&gt;true&lt;/HideWirelessSetupInOOBE&gt;
+        &lt;NetworkLocation&gt;Work&lt;/NetworkLocation&gt;
+        &lt;ProtectYourPC&gt;3&lt;/ProtectYourPC&gt;
+        &lt;SkipMachineOOBE&gt;true&lt;/SkipMachineOOBE&gt;
+        &lt;SkipUserOOBE&gt;true&lt;/SkipUserOOBE&gt;
+      &lt;/OOBE&gt;
+      &lt;UserAccounts&gt;
+        &lt;LocalAccounts&gt;
+          &lt;LocalAccount wcm:action="add"&gt;
+            &lt;Name&gt;GTA&lt;/Name&gt;
+            &lt;Group&gt;Administrators&lt;/Group&gt;
+            &lt;DisplayName&gt;GTA&lt;/DisplayName&gt;
+            &lt;Password&gt;&lt;Value&gt;&lt;/Value&gt;&lt;PlainText&gt;true&lt;/PlainText&gt;&lt;/Password&gt;
+          &lt;/LocalAccount&gt;
+        &lt;/LocalAccounts&gt;
+      &lt;/UserAccounts&gt;
+      &lt;AutoLogon&gt;
+        &lt;Username&gt;GTA&lt;/Username&gt;
+        &lt;LogonCount&gt;1&lt;/LogonCount&gt;
+        &lt;Enabled&gt;true&lt;/Enabled&gt;
+      &lt;/AutoLogon&gt;
+    &lt;/component&gt;
+  &lt;/settings&gt;
+
+&lt;/unattend&gt;</pre>
+      </div>
+      <p>Guarda como: <strong>Archivo → Guardar como</strong> → tipo: Todos los archivos → nombre: <code>autounattend.xml</code> → guarda en <code>C:\ProyectoISO\</code></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     FASE 6 — GENERAR ISO
+══════════════════════════════════════════════ -->
+<div class="phase" id="fase6">
+  <div class="phase-header">
+    <div class="phase-icon icon-blue">💿</div>
+    <div>
+      <div class="phase-num">Fase 06</div>
+      <div class="phase-title">Generar la ISO final</div>
+      <div class="phase-desc">Empaquetar todo en un archivo .iso booteable</div>
+    </div>
+  </div>
+
+  <div class="step open" id="s12">
+    <div class="step-head" onclick="tog('s12')">
+      <span class="step-tag tag-b">6.1</span>
+      <span class="step-title">Genera la ISO con oscdimg</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="why"><strong>¿Por qué oscdimg y no comprimir la carpeta?</strong> Una ISO booteable necesita sectores de arranque especiales (uno para BIOS, otro para UEFI) que oscdimg añade automáticamente. Sin ellos el USB no arranca.</div>
+      <div class="code-wrap">
+        <div class="code-top"><span class="code-lang">CMD — Administrador</span><button class="copy-btn" onclick="cp(this,'c10')">Copiar</button></div>
+        <pre id="c10">"C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\Oscdimg\oscdimg.exe" -m -o -u2 -udfver102 -bootdata:2#p0,e,b"C:\ProyectoISO\ISO_fuente\boot\etfsboot.com"#pEF,e,b"C:\ProyectoISO\ISO_fuente\efi\microsoft\boot\efisys.bin" "C:\ProyectoISO\ISO_fuente" "C:\ProyectoISO\Windows11_GTA_FINAL.iso"</pre>
+      </div>
+      <p>Tarda 5-15 minutos. Cuando termine verás <code>Done.</code> y se habrá creado: <code>C:\ProyectoISO\Windows11_GTA_FINAL.iso</code></p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     FASE 7 — GRABAR USB E INSTALAR
+══════════════════════════════════════════════ -->
+<div class="phase" id="fase7">
+  <div class="phase-header">
+    <div class="phase-icon icon-green">🔌</div>
+    <div>
+      <div class="phase-num">Fase 07</div>
+      <div class="phase-title">Grabar USB e instalar</div>
+      <div class="phase-desc">Configuración exacta de Rufus y pasos finales</div>
+    </div>
+  </div>
+
+  <div class="step open" id="s13">
+    <div class="step-head" onclick="tog('s13')">
+      <span class="step-tag tag-g">7.1</span>
+      <span class="step-title">Graba la ISO con Rufus</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <p>Abre Rufus y configura exactamente así:</p>
+      <table class="tbl">
+        <tr><th>Campo</th><th>Valor</th></tr>
+        <tr><td>Dispositivo</td><td>Tu USB (mínimo 16 GB — se borrará todo)</td></tr>
+        <tr><td>Elección de arranque</td><td><code>Windows11_GTA_FINAL.iso</code></td></tr>
+        <tr><td>Opciones de imagen</td><td>Standard Windows 11 Installation</td></tr>
+        <tr><td>Esquema de partición</td><td><strong>GPT</strong></td></tr>
+        <tr><td>Sistema destino</td><td><strong>UEFI (no CSM)</strong></td></tr>
+        <tr><td>Sistema de archivos</td><td><strong>NTFS</strong></td></tr>
+      </table>
+      <div class="callout c-warn"><div class="ico">⚠️</div><div>Si aparece una ventana de "Personalizar la instalación de Windows", deja <strong>todo sin marcar</strong> y clic en OK. Cualquier opción marcada puede interferir con el proceso.</div></div>
+      <p>Clic en <strong>Empezar</strong> y espera que termine.</p>
+    </div>
+  </div>
+
+  <div class="step" id="s14">
+    <div class="step-head" onclick="tog('s14')">
+      <span class="step-tag tag-g">7.2</span>
+      <span class="step-title">Copia el autounattend.xml al USB después de grabar</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="why"><strong>¿Por qué copiarlo después y no antes?</strong> Rufus puede sobrescribir o modificar archivos en la raíz del USB al grabar. Copiarlo al final garantiza que el archivo quedará exactamente como lo creaste.</div>
+      <p>Reemplaza <code>W:</code> con la letra que tenga tu USB:</p>
+      <div class="code-wrap">
+        <div class="code-top"><span class="code-lang">CMD — Administrador</span><button class="copy-btn" onclick="cp(this,'c11')">Copiar</button></div>
+        <pre id="c11">copy /Y "C:\ProyectoISO\autounattend.xml" "W:\autounattend.xml"</pre>
+      </div>
+      <p>Verifica que el archivo quedó en la raíz del USB (no dentro de ninguna subcarpeta).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     FASE 8 — VERIFICACIÓN
+══════════════════════════════════════════════ -->
+<div class="phase" id="fase8">
+  <div class="phase-header">
+    <div class="phase-icon icon-green">✅</div>
+    <div>
+      <div class="phase-num">Fase 08</div>
+      <div class="phase-title">Verificación post-instalación</div>
+      <div class="phase-desc">Cómo confirmar que todo funcionó correctamente</div>
+    </div>
+  </div>
+
+  <div class="step open" id="s15">
+    <div class="step-head" onclick="tog('s15')">
+      <span class="step-tag tag-g">8.1</span>
+      <span class="step-title">Qué esperar durante y después de la instalación</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <p>El proceso completo se verá así:</p>
+      <table class="tbl">
+        <tr><th>Etapa</th><th>Duración</th><th>Qué ves</th></tr>
+        <tr><td>Instalación de Windows</td><td>15-25 min</td><td>Pantalla normal de instalación</td></tr>
+        <tr><td>Primer arranque</td><td>2-5 min</td><td>Pantalla de configuración, crea usuario GTA</td></tr>
+        <tr><td>Instalación de programas</td><td>5-15 min</td><td>Escritorio visible, CMD en segundo plano. No toques nada.</td></tr>
+        <tr><td>Listo</td><td>—</td><td>Todos los programas instalados en el menú inicio</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="step" id="s16">
+    <div class="step-head" onclick="tog('s16')">
+      <span class="step-tag tag-g">8.2</span>
+      <span class="step-title">Verifica el log de instalación</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <p>Abre <code>C:\install_log.txt</code>. Debe verse así:</p>
+      <div class="code-wrap">
+        <div class="code-top"><span class="code-lang">C:\install_log.txt — ejemplo exitoso</span></div>
+        <pre>26/05/2026 08:17:44 ===== INICIO =====
+26/05/2026 08:18:14 7-Zip: 0
+26/05/2026 08:18:22 MoffFree: 0
+26/05/2026 08:18:45 K-Lite: 0
+26/05/2026 08:19:10 Foxit: 0
+26/05/2026 08:19:38 Java: 0
+26/05/2026 08:20:15 Chrome: 0
+26/05/2026 08:20:42 Firefox: 0
+26/05/2026 08:20:42 ===== COMPLETADO =====</pre>
+      </div>
+      <p>Código <code>0</code> en cada línea = instalación exitosa. Si alguno tiene otro código:</p>
+      <table class="tbl">
+        <tr><th>Código</th><th>Causa</th><th>Solución</th></tr>
+        <tr><td><code>0</code></td><td class="ok-cell">Éxito</td><td>—</td></tr>
+        <tr><td><code>1</code></td><td>Error genérico</td><td>Verifica que el .exe está en <code>Scripts\Installers\</code></td></tr>
+        <tr><td><code>2</code></td><td>Archivo no encontrado</td><td>El nombre en el script no coincide con el archivo real</td></tr>
+        <tr><td><code>1603</code></td><td>Error MSI</td><td>Prueba agregar <code>/quiet</code> al parámetro</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     REFERENCIA — PARÁMETROS SILENCIOSOS
+══════════════════════════════════════════════ -->
+<div class="phase" id="parametros">
+  <div class="phase-header">
+    <div class="phase-icon icon-amber">📋</div>
+    <div>
+      <div class="phase-num">Referencia</div>
+      <div class="phase-title">Parámetros silenciosos verificados</div>
+      <div class="phase-desc">Confirmados en pruebas reales con estos instaladores específicos</div>
+    </div>
+  </div>
+
+  <div class="step open" id="s17">
+    <div class="step-head" onclick="tog('s17')">
+      <span class="step-tag tag-a">REF</span>
+      <span class="step-title">Tabla completa de parámetros por motor de instalación</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <table class="tbl">
+        <tr><th>Programa</th><th>Motor</th><th>Parámetro correcto</th><th>Estado</th></tr>
+        <tr><td>7-Zip 16.04</td><td>NSIS</td><td><code>/S</code> (mayúscula)</td><td class="ok-cell">✓ Verificado</td></tr>
+        <tr><td>MoffFree Calculator</td><td>Inno Setup</td><td><code>/VERYSILENT /SUPPRESSMSGBOXES /NORESTART</code></td><td class="ok-cell">✓ Verificado</td></tr>
+        <tr><td>K-Lite Codec Pack 11.96</td><td>Inno Setup</td><td><code>/VERYSILENT /SUPPRESSMSGBOXES /NORESTART</code></td><td class="ok-cell">✓ Verificado</td></tr>
+        <tr><td>Foxit Reader 10.1.1</td><td>Inno Setup</td><td><code>/VERYSILENT /SUPPRESSMSGBOXES /NORESTART</code></td><td class="ok-cell">✓ Verificado</td></tr>
+        <tr><td>Java 8u491 (offline)</td><td>Oracle</td><td><code>/s REBOOT=0 SPONSORS=0</code></td><td class="ok-cell">✓ Verificado</td></tr>
+        <tr><td>Chrome Enterprise MSI</td><td>MSI (msiexec)</td><td><code>/qn /norestart ALLUSERS=1</code></td><td class="ok-cell">✓ Verificado</td></tr>
+        <tr><td>Firefox 85.0.2</td><td>Mozilla</td><td><code>-ms</code></td><td class="ok-cell">✓ Verificado</td></tr>
+      </table>
+
+      <div class="callout c-warn"><div class="ico">⚠️</div><div><div class="callout-title">Chrome y Java — solo versiones offline</div>
+        El <code>ChromeSetup.exe</code> estándar y el <code>JavaSetup8uXXX.exe</code> estándar son instaladores <strong>online</strong> que requieren internet. Sin internet devuelven error <code>0x80040c01</code> (Chrome) o no instalan nada (Java). Siempre usa las versiones offline indicadas en esta guía.
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     ERRORES COMUNES
+══════════════════════════════════════════════ -->
+<div class="phase" id="errores">
+  <div class="phase-header">
+    <div class="phase-icon icon-red">⚠️</div>
+    <div>
+      <div class="phase-num">Referencia</div>
+      <div class="phase-title">Errores comunes y soluciones</div>
+      <div class="phase-desc">Problemas encontrados durante el proceso y cómo resolverlos</div>
+    </div>
+  </div>
+
+  <div class="step open" id="s18">
+    <div class="step-head" onclick="tog('s18')">
+      <span class="step-tag tag-r">ERR</span>
+      <span class="step-title">Tabla de errores y soluciones</span>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <table class="tbl">
+        <tr><th>Error</th><th>Causa</th><th>Solución</th></tr>
+        <tr>
+          <td>Programas no se instalan</td>
+          <td>SetupComplete.cmd no se ejecuta en Win11 22H2+</td>
+          <td class="fix-cell">Usar RunOnce en el registro del WIM</td>
+        </tr>
+        <tr>
+          <td>$OEM$ no llega al disco</td>
+          <td>Rufus modifica o ignora la carpeta $OEM$</td>
+          <td class="fix-cell">Inyectar archivos directamente en el WIM</td>
+        </tr>
+        <tr>
+          <td>autounattend.xml ignorado</td>
+          <td>Falta la primera línea <code>&lt;?xml...&gt;</code> o codificación incorrecta</td>
+          <td class="fix-cell">Usar Notepad++ con UTF-8 sin BOM, verificar primera línea</td>
+        </tr>
+        <tr>
+          <td>WIM error 0xc1420127</td>
+          <td>WIM ya montado de sesión anterior</td>
+          <td class="fix-cell"><code>DISM /Cleanup-Mountpoints</code> y volver a montar</td>
+        </tr>
+        <tr>
+          <td>Índice 6 = edición equivocada</td>
+          <td>Índice 6 es "Pro for Workstations", no Pro</td>
+          <td class="fix-cell">Verificar con <code>DISM /Get-ImageInfo</code>. Pro = índice 4</td>
+        </tr>
+        <tr>
+          <td>Chrome error 0x80040c01</td>
+          <td>ChromeSetup.exe es instalador online</td>
+          <td class="fix-cell">Reemplazar por <code>googlechromestandaloneenterprise64.msi</code></td>
+        </tr>
+        <tr>
+          <td>Java no instala</td>
+          <td>JavaSetup8uXXX.exe es instalador online</td>
+          <td class="fix-cell">Reemplazar por <code>jre-8uXXX-windows-x64.exe</code> (offline)</td>
+        </tr>
+        <tr>
+          <td>MoffFree abre ventana</td>
+          <td>Parámetro <code>/S</code> no funciona en Inno Setup</td>
+          <td class="fix-cell">Usar <code>/VERYSILENT /SUPPRESSMSGBOXES /NORESTART</code></td>
+        </tr>
+        <tr>
+          <td>Foxit abre ventana</td>
+          <td>Mismo caso que MoffFree — Inno Setup</td>
+          <td class="fix-cell">Usar <code>/VERYSILENT /SUPPRESSMSGBOXES /NORESTART</code></td>
+        </tr>
+        <tr>
+          <td>Firefox falla en script</td>
+          <td>Nombre tiene espacios, ruta relativa no funciona</td>
+          <td class="fix-cell">Usar ruta absoluta completa: <code>"C:\Windows\Setup\Scripts\Installers\Firefox Setup 85.0.2.exe"</code></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     RESUMEN FINAL
+══════════════════════════════════════════════ -->
+<div class="phase" id="resumen">
+  <div class="summary">
+    <h3>📋 Orden de ejecución completo</h3>
+    <div class="order-item"><div class="order-num">1</div><div class="order-text">Instala 7-Zip, Windows ADK (Deployment Tools), Notepad++ y descarga Rufus</div><div class="order-time">~15 min</div></div>
+    <div class="order-item"><div class="order-num">2</div><div class="order-text">Descarga ISO Win11, Chrome MSI offline, Java offline y demás instaladores</div><div class="order-time">~30 min</div></div>
+    <div class="order-item"><div class="order-num">3</div><div class="order-text">Crea carpetas: <code>C:\ProyectoISO\ISO_fuente</code>, <code>Updates</code>, <code>WIM_mount</code></div><div class="order-time">~1 min</div></div>
+    <div class="order-item"><div class="order-num">4</div><div class="order-text">Extrae la ISO con 7-Zip en <code>C:\ProyectoISO\ISO_fuente\</code></div><div class="order-time">~5 min</div></div>
+    <div class="order-item"><div class="order-num">5</div><div class="order-text">Verifica el índice correcto con <code>DISM /Get-ImageInfo</code> (Pro = índice 4)</div><div class="order-time">~1 min</div></div>
+    <div class="order-item"><div class="order-num">6</div><div class="order-text">Crea <code>instalar.cmd</code> en Notepad++ con UTF-8 sin BOM</div><div class="order-time">~5 min</div></div>
+    <div class="order-item"><div class="order-num">7</div><div class="order-text">Monta WIM índice 4: <code>DISM /Mount-Image ... /Index:4</code></div><div class="order-time">~10 min</div></div>
+    <div class="order-item"><div class="order-num">8</div><div class="order-text">Copia los 7 instaladores y <code>instalar.cmd</code> dentro del WIM montado</div><div class="order-time">~5 min</div></div>
+    <div class="order-item"><div class="order-num">9</div><div class="order-text">Registra RunOnce en el registro del WIM con <code>reg load</code> → <code>reg add</code> → <code>reg unload</code></div><div class="order-time">~1 min</div></div>
+    <div class="order-item"><div class="order-num">10</div><div class="order-text">Desmonta y guarda: <code>DISM /Unmount-Image ... /Commit</code></div><div class="order-time">~15 min</div></div>
+    <div class="order-item"><div class="order-num">11</div><div class="order-text">Crea <code>autounattend.xml</code> en Notepad++ con UTF-8 sin BOM</div><div class="order-time">~5 min</div></div>
+    <div class="order-item"><div class="order-num">12</div><div class="order-text">Genera ISO con <code>oscdimg</code> → <code>Windows11_GTA_FINAL.iso</code></div><div class="order-time">~10 min</div></div>
+    <div class="order-item"><div class="order-num">13</div><div class="order-text">Graba ISO en USB con Rufus: GPT + UEFI (no CSM) + NTFS</div><div class="order-time">~10 min</div></div>
+    <div class="order-item"><div class="order-num">14</div><div class="order-text">Copia <code>autounattend.xml</code> a la raíz del USB después de que Rufus termine</div><div class="order-time">~1 min</div></div>
+    <div class="order-item"><div class="order-num">15</div><div class="order-text">Instala y verifica <code>C:\install_log.txt</code> — todos los códigos deben ser 0</div><div class="order-time">~40 min</div></div>
+  </div>
+</div>
+
+</div><!-- end content -->
+</div><!-- end main -->
+
+<script>
+function tog(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+function ck(el) {
+  el.classList.toggle('on');
+  el.textContent = el.classList.contains('on') ? '✓' : '';
+  el.nextElementSibling.classList.toggle('done');
+}
+function cp(btn, id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  // get raw text content
+  const text = el.innerText || el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copiado';
+    btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('ok'); }, 2000);
+  });
+}
+// Highlight active sidebar link on scroll
+const phases = document.querySelectorAll('.phase');
+const links = document.querySelectorAll('.sidebar a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  phases.forEach(p => {
+    if (window.scrollY >= p.offsetTop - 80) current = p.id;
+  });
+  links.forEach(l => {
+    l.classList.remove('active');
+    if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
